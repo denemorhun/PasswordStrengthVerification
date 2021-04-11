@@ -51,7 +51,6 @@ class Admin(User):
         self.special_chars = ['!', '@', '#', '$', '%', '^', '&', '*']
 
     def _verify_admin_password(self, password):
-
         basic_status = self._verify_password(password)
         special_char_status = True
 
@@ -70,8 +69,3 @@ class Admin(User):
             return False
         
         return True
-
-admin1 = Admin()
-admin1.is_pwd_valid(admin1._verify_admin_password('111111111@11111111'))
-admin1.is_pwd_valid(admin1._verify_admin_password('@1111dddddddddddd'))
-admin1.is_pwd_valid(admin1._verify_admin_password('ABDC234234@@!@@43dadafdad'))

@@ -50,3 +50,7 @@ def test8_admin_does_not_meet_length():
 def test9_verify_admin_valid_password():
 	admin1 = passwordStrengthVerifier.Admin()
 	assert admin1._verify_admin_password('ABDC@!$23423%4')
+
+def test_verify_blank():
+		admin1 = passwordStrengthVerifier.Admin()
+		assert admin1._verify_admin_password('               ') is False
