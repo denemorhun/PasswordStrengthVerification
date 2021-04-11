@@ -19,12 +19,23 @@ Expected behavior: The password is not accepted
 
 
 def verifyPassword(password):
+    hasDigit=False
+    hasAlpha=False
   
     # for checking if password length
-        if len(password) < 8:
-            return False
+    if len(password) < 8:
+        return False
   
     # check if password contains at least 1 letter and 1 number
+    else:
+	    for i in password:
+		    if i.isdigit():
+		        hasDigit = True
+		    if i.isalpha():
+		        hasAlpha = True
+		    if hasAlpha and hasDigit:
+			    return True
 
-        if password.isalnum():
-            return True
+    return False
+
+print(verifyPassword('111111111'))
