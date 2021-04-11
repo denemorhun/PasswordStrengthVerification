@@ -37,18 +37,18 @@ Expected behavior: The password is accepted
 
 # refactored code to include a class for standard user and admin user
 # User class that has verify password method
-class user():
+class User():
 
     def __init__(self):
-        pass
+        self.CHAR_LIMIT = 8
 
-    def verifyPassword(self, password):
+    def verify_password(self, password):
 
         alpha_status = True
         digit_status = True
         
-        if len(password) < 8:
-            print("Password is less than 8 characters")
+        if len(password) < self.CHAR_LIMIT:
+            print(f"Password is less than {self.CHAR_LIMIT} characters")
             return False
 
         if not any(char.isdigit() for char in password):
@@ -67,7 +67,43 @@ class user():
     def _print_helper(self, input):
         print("Password is accepted" if input else "Password is not accepted")
 
+class Admin(User):
 
-user1  = user()
+    def __init__(self):
+        self.CHAR_LIMIT = 13
+        self.special_chars = ['!', '@', '#', '$', '%', '^', '&', '*']
 
-user1._print_helper(user1.verifyPassword('111111111111'))
+    def verify_special_char(self, password):
+
+        basic_status = self.verifyPassword(password)
+        print("Basic_status" ,basic_status)
+        special_char_status = True
+        
+        if len(password) < self.CHAR_LIMIT:
+            print(f"Admin password is less than {self.CHAR_LIMIT} characters")
+            return False
+
+        if not any(char in self.special_chars for char in password):
+            print('Password should have at least one special char')
+            print("Refer to this list: '!', '@', '#', '$', '%', '^', '&' '*'")
+            special_char_status = False
+
+        if special_char_status is False or basic_status is False:
+            return False
+
+        return True
+
+    
+
+user1  = User()
+user1._print_helper(user1.verify_password('111111111111'))
+user1._print_helper(user1.verify_password('8888dddd'))
+user1._print_helper(user1.verify_password('        '))
+user1._print_helper(user1.verify_password('uiurerererare'))
+user1._print_helper(user1.verify_password('ADERE3232425'))
+user1._print_helper(user1.verify_password('@#$@#$#@$@$$@$@'))
+user1._print_helper(user1.verify_password('@#$@$@ADAFDAF23423424'))
+user1._print_helper(user1.verify_password('111111111111'))
+
+
+admin1 = Admin
