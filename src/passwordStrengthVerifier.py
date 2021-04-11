@@ -21,7 +21,7 @@ Expected behavior: The password is not accepted
 def verifyPassword(password):
   
     # for checking if password length
-<<<<<<< HEAD
+
     if len(password) < 8:
         # Phase 2
         print("Password is not long enough")
@@ -49,12 +49,3 @@ def print_helper(boolean):
     print("Password is accepted" if True else "Password is not accepted")
 
 #print_helper(verifyAlphanum('abcd1234'))
-=======
-        if len(password) < 8:
-            return False
-  
-    # check if password contains at least 1 letter and 1 number
-
-        if password.isalnum():
-            return True
->>>>>>> parent of 565734a (commit stage 1)
