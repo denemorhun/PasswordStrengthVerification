@@ -2,8 +2,9 @@
 # author: Denem Orhun
 
 ''' Changelog (latest on top):
-    
-    # Add Phase 3
+    # Fix Phase 4 tests
+    # Add Phase 4 changes
+    # Add Phase 3, add admin password verify and tests
     # Add test scaffolding to cover Phase 3 and Phase 4
     # Refactor Phase 1 & 2
     # Add Phase 2 output messages
@@ -15,7 +16,7 @@
 # User class with verify password method
 class User():
     def __init__(self):
-        self.CHAR_LIMIT = 8
+        self.CHAR_LIMIT = 10
 
     def _verify_password(self, password):
 
@@ -52,19 +53,25 @@ class Admin(User):
     def _verify_admin_password(self, password):
 
         basic_status = self._verify_password(password)
-        print("Basic Status", basic_status)
         special_char_status = True
 
         if basic_status is False:
             return False
 
-        if not any(char in self.special_chars for char in password):
-            print('Password should have at least one special character.')
+        # Phase 4 addition
+        special_chars = [c for c in password if c in self.special_chars]
+
+        if len(special_chars) < 3:    
+            print('Password should have at least three special characters.')
             print("Refer to this list: '!', '@', '#', '$', '%', '^', '&' '*'")
             special_char_status = False
 
         if special_char_status is False or basic_status is False:
             return False
-        else:
-            print('Returning true')
-            return True
+        
+        return True
+
+admin1 = Admin()
+admin1.is_pwd_valid(admin1._verify_admin_password('111111111@11111111'))
+admin1.is_pwd_valid(admin1._verify_admin_password('@1111dddddddddddd'))
+admin1.is_pwd_valid(admin1._verify_admin_password('ABDC234234@@!@@43dadafdad'))
