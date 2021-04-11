@@ -24,18 +24,29 @@ def verifyPassword(password):
   
     # for checking if password length
     if len(password) < 8:
+        # Phase 2
+        print("Password is not long enough")
         return False
   
     # check if password contains at least 1 letter and 1 number
     else:
 	    for i in password:
-		    if i.isdigit():
-		        hasDigit = True
-		    if i.isalpha():
+            if i.isdigit():
+                hasDigit = True
+            if i.isalpha():
 		        hasAlpha = True
-		    if hasAlpha and hasDigit:
-			    return True
+            if hasAlpha and hasDigit:
+                return True
+        
+    # if hasAlpha is False:
+    #         print("Password is missing alpha character")
+    
+    # if hasDigit is False:
+    #         print("Password is missing digit")
 
-    return False
+    # return False
 
-print(verifyPassword('111111111'))
+def print_helper(boolean):
+    print("Password is accepted" if True else "Password is not accepted")
+
+#print_helper(verifyAlphanum('abcd1234'))
