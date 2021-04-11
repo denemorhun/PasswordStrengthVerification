@@ -15,6 +15,10 @@ def test_does_not_meet_alpha():
 def test_does_not_meet_numeric():
 	assert verifyPassword('aaaaaaaa') is False
 
-def test_uppercase():
+def test_uppercase_is_valid():
 	assert verifyPassword('ABCD123a') is True
+
+def test_special_characters_are_valid():
+	assert verifyPassword('$$AA11vs') is True
+
 

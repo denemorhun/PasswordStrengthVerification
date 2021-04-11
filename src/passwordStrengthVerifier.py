@@ -1,52 +1,63 @@
 # Python3 code to validate a password
+# author: Denem Orhun
 
-# ITERATION 1 COMMIT
-  
-''' Iteration 1
-The tool should verify if a password meets the requirements for a strong password
-• The password must be at least 8 characters in length 
--- what about upper limit?
-• The password must contain at least 1 letter
-• The password must contain at least 1 number
+''' Changelog (latest on top):
+    # Add Phase 3
+    # Add test scaffolding to cover Phase 3 and Phase 4
+    # Refactor Phase 1 & 2
+    # Add Phase 2 output messages
+    # Add Pytests
+    # Add Phase 1 initial take
+    # Plan
+'''
 
-Data provided: “password123”
+'''
+PHASE 3:
+
+Iteration 3
+The tool must now take into account the type of user that a password is for. Admin users require a 
+stronger password than regular users.
+
+Passwords for Admin users must be at least 13 characters in length
+
+Passwords for Admin users must contain a special character ('!', '@', '#', '$', '%', '^', '&', or '*')
+
+The password requirements for regular users are unchanged
+
+Data provided: “password123” and “normal”
 Expected behavior: The password is accepted
 
-Data provided: “12345”
+Data provided: “password123” and “admin”
 Expected behavior: The password is not accepted
+
+Data provided: “password1234!” and “admin”
+Expected behavior: The password is accepted
 
 '''
 
 
 def verifyPassword(password):
-  
-    # for checking if password length
-    hasDigit = False
-    hasAlpha = False
 
-    if len(password) < 8:
-        # Phase 2
-        print("Password is not long enough")
-        return False
-  
-    # check if password contains at least 1 letter and 1 number
-    else:
-        for i in password:
-            if i.isdigit():
-                hasDigit = True
-            if i.isalpha():
-                hasAlpha = True
-            if hasAlpha and hasDigit:
-                return True
+    alpha_status = True
+    digit_status = True
         
-    #return False
-    if hasAlpha is False:
-             print("Password is missing alpha character")
-    
-    if hasDigit is False:
-             print("Password is missing digit")
+    if len(password) < 8:
+        print("Password is less than 8 characters")
+        return False
 
-    return False
+    # refactored code to make it cleaner and expendable
+    if not any(char.isdigit() for char in password):
+        print('Password should have at least one numeral')
+        digit_status = False
 
-def print_helper(result):
-    print("Password is accepted" if result else "Password is not accepted")
+    if not any(char.isalpha() for char in password):
+        print('Password should have at least one character')
+        alpha_status = False
+
+    if alpha_status is False or digit_status is False:
+        return False
+
+    return True
+
+def print_helper( input ):
+    print("Password is accepted" if input else "Password is not accepted")
