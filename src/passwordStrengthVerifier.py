@@ -73,37 +73,45 @@ class Admin(User):
         self.CHAR_LIMIT = 13
         self.special_chars = ['!', '@', '#', '$', '%', '^', '&', '*']
 
-    def verify_special_char(self, password):
+    def verify_admin_password(self, password):
 
-        basic_status = self.verifyPassword(password)
-        print("Basic_status" ,basic_status)
+        basic_status = self.verify_password(password)
+        print("Basic Status", basic_status)
         special_char_status = True
-        
-        if len(password) < self.CHAR_LIMIT:
-            print(f"Admin password is less than {self.CHAR_LIMIT} characters")
+
+        if basic_status is False:
             return False
 
         if not any(char in self.special_chars for char in password):
-            print('Password should have at least one special char')
+            print('Password should have at least one special character.')
             print("Refer to this list: '!', '@', '#', '$', '%', '^', '&' '*'")
             special_char_status = False
 
         if special_char_status is False or basic_status is False:
+            print('Returning false')
             return False
-
-        return True
+        else:
+            print('Returning true')
+            return True
 
     
 
-user1  = User()
-user1._print_helper(user1.verify_password('111111111111'))
-user1._print_helper(user1.verify_password('8888dddd'))
-user1._print_helper(user1.verify_password('        '))
-user1._print_helper(user1.verify_password('uiurerererare'))
-user1._print_helper(user1.verify_password('ADERE3232425'))
-user1._print_helper(user1.verify_password('@#$@#$#@$@$$@$@'))
-user1._print_helper(user1.verify_password('@#$@$@ADAFDAF23423424'))
-user1._print_helper(user1.verify_password('111111111111'))
+# user1  = User()
+# user1._print_helper(user1.verify_password('111111111111'))
+# user1._print_helper(user1.verify_password('8888dddd'))
+# user1._print_helper(user1.verify_password('        '))
+# user1._print_helper(user1.verify_password('uiurerererare'))
+# user1._print_helper(user1.verify_password('ADERE3232425'))
+# user1._print_helper(user1.verify_password('@#$@#$#@$@$$@$@'))
+# user1._print_helper(user1.verify_password('@#$@$@ADAFDAF23423424'))
+# user1._print_helper(user1.verify_password('111111111111'))
 
 
-admin1 = Admin
+admin1 = Admin()
+admin1._print_helper(admin1.verify_admin_password('111'))
+admin1._print_helper(admin1.verify_admin_password('111111111@11111111'))
+admin1._print_helper(admin1.verify_admin_password('@1111dddddddddddd'))
+
+admin1._print_helper(admin1.verify_admin_password('ABDC23423443dadafdad'))
+
+print(admin1.verify_admin_password('ABDC23423443dadafdad'))
