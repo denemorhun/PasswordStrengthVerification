@@ -21,6 +21,8 @@ Expected behavior: The password is not accepted
 def verifyPassword(password):
   
     # for checking if password length
+    hasDigit = False
+    hasAlpha = False
 
     if len(password) < 8:
         # Phase 2
@@ -29,23 +31,24 @@ def verifyPassword(password):
   
     # check if password contains at least 1 letter and 1 number
     else:
-	    for i in password:
+        for i in password:
             if i.isdigit():
                 hasDigit = True
             if i.isalpha():
-		        hasAlpha = True
+                hasAlpha = True
             if hasAlpha and hasDigit:
                 return True
         
-    # if hasAlpha is False:
-    #         print("Password is missing alpha character")
+    #return False
+    if hasAlpha is False:
+             print("Password is missing alpha character")
     
-    # if hasDigit is False:
-    #         print("Password is missing digit")
+    if hasDigit is False:
+             print("Password is missing digit")
 
-    # return False
+    return False
 
-def print_helper(boolean):
-    print("Password is accepted" if True else "Password is not accepted")
+def print_helper(result):
+    print("Password is accepted" if result else "Password is not accepted")
 
-#print_helper(verifyAlphanum('abcd1234'))
+print_helper(verifyPassword('               '))
