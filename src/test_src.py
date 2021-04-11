@@ -1,24 +1,36 @@
 # ITERATION 1 COMMIT
 
-from passwordStrengthVerifier import verifyPassword, print_helper
+import pytest
+import passwordStrengthVerifier
+
+@pytest.fixture
+def supply_user():
+	user1 = passwordStrengthVerifier.user()
 
 # Test password meets length and alphanum requirements
 def test_length_alphanum():
-	assert verifyPassword('abcd1234') is True
+	user1 = passwordStrengthVerifier.user()
+	assert user1.verifyPassword('abcd1234') is True
 
 # Test password < 8 is False -> negative test case
 def test_does_not_meet_length():
-	assert verifyPassword('abcd123') is False
+	user1 = passwordStrengthVerifier.user()
+	assert user1.verifyPassword('abcd123') is False
+
 def test_does_not_meet_alpha():
-	assert verifyPassword('11111111') is False
+	user1 = passwordStrengthVerifier.user()
+	assert user1.verifyPassword('11111111') is False
 
 def test_does_not_meet_numeric():
-	assert verifyPassword('aaaaaaaa') is False
+	user1 = passwordStrengthVerifier.user()
+	assert user1.verifyPassword('aaaaaaaa') is False
 
 def test_uppercase_is_valid():
-	assert verifyPassword('ABCD123a') is True
+	user1 = passwordStrengthVerifier.user()
+	assert user1.verifyPassword('ABCD123a') is True
 
 def test_special_characters_are_valid():
-	assert verifyPassword('$$AA11vs') is True
+	user1 = passwordStrengthVerifier.user()
+	assert user1.verifyPassword('$$AA11vs') is True
 
 

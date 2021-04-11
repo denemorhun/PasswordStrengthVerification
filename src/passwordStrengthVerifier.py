@@ -35,29 +35,39 @@ Expected behavior: The password is accepted
 
 '''
 
+# refactored code to include a class for standard user and admin user
+# User class that has verify password method
+class user():
 
-def verifyPassword(password):
+    def __init__(self):
+        pass
 
-    alpha_status = True
-    digit_status = True
+    def verifyPassword(self, password):
+
+        alpha_status = True
+        digit_status = True
         
-    if len(password) < 8:
-        print("Password is less than 8 characters")
-        return False
+        if len(password) < 8:
+            print("Password is less than 8 characters")
+            return False
 
-    # refactored code to make it cleaner and expendable
-    if not any(char.isdigit() for char in password):
-        print('Password should have at least one numeral')
-        digit_status = False
+        if not any(char.isdigit() for char in password):
+            print('Password should have at least one numeral')
+            digit_status = False
 
-    if not any(char.isalpha() for char in password):
-        print('Password should have at least one character')
-        alpha_status = False
+        if not any(char.isalpha() for char in password):
+            print('Password should have at least one character')
+            alpha_status = False
 
-    if alpha_status is False or digit_status is False:
-        return False
+        if alpha_status is False or digit_status is False:
+            return False
 
-    return True
+        return True
 
-def print_helper( input ):
-    print("Password is accepted" if input else "Password is not accepted")
+    def _print_helper(self, input):
+        print("Password is accepted" if input else "Password is not accepted")
+
+
+user1  = user()
+
+user1._print_helper(user1.verifyPassword('111111111111'))
