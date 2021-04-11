@@ -1,6 +1,6 @@
 # ITERATION 1 COMMIT
 
-from passwordStrengthVerifier import verifyPassword
+from passwordStrengthVerifier import verifyPassword, print_helper
 
 # Test password meets length and alphanum requirements
 def test_length_alphanum():
@@ -17,3 +17,4 @@ def test_does_not_meet_numeric():
 
 def test_uppercase():
 	assert verifyPassword('ABCD123a') is True
+
