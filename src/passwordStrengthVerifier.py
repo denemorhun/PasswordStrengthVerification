@@ -50,5 +50,3 @@ def verifyPassword(password):
 
 def print_helper(result):
     print("Password is accepted" if result else "Password is not accepted")
-
-print_helper(verifyPassword('               '))
