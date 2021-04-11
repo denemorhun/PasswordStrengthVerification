@@ -12,30 +12,6 @@
     # Plan
 '''
 
-'''
-PHASE 3:
-
-Iteration 3
-The tool must now take into account the type of user that a password is for. Admin users require a 
-stronger password than regular users.
-
-Passwords for Admin users must be at least 13 characters in length
-
-Passwords for Admin users must contain a special character ('!', '@', '#', '$', '%', '^', '&', or '*')
-
-The password requirements for regular users are unchanged
-
-Data provided: “password123” and “normal”
-Expected behavior: The password is accepted
-
-Data provided: “password123” and “admin”
-Expected behavior: The password is not accepted
-
-Data provided: “password1234!” and “admin”
-Expected behavior: The password is accepted
-
-'''
-
 # User class with verify password method
 class User():
     def __init__(self):
@@ -88,7 +64,6 @@ class Admin(User):
             special_char_status = False
 
         if special_char_status is False or basic_status is False:
-            print('Returning false')
             return False
         else:
             print('Returning true')
