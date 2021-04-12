@@ -2,6 +2,7 @@
 # author: Denem Orhun
 
 ''' Changelog (latest on top):
+    # Clean up and more comments
     # Fix Phase 4 tests
     # Add Phase 4 changes
     # Add Phase 3, add admin password verify and tests
@@ -20,20 +21,20 @@ class User():
 
     def _verify_password(self, password):
 
-        alpha_status = True
-        digit_status = True
+        alpha_status = False
+        digit_status = False
         
         if len(password) < self.CHAR_LIMIT:
             print(f"Password is less than {self.CHAR_LIMIT} characters")
             return False
 
-        if not any(char.isdigit() for char in password):
+        if any(char.isdigit() for char in password):
             print('Password should have at least one numeral')
-            digit_status = False
+            digit_status = True
 
-        if not any(char.isalpha() for char in password):
+        if any(char.isalpha() for char in password):
             print('Password should have at least one character')
-            alpha_status = False
+            alpha_status = True
 
         if alpha_status is False or digit_status is False:
             return False
@@ -52,18 +53,17 @@ class Admin(User):
 
     def _verify_admin_password(self, password):
         basic_status = self._verify_password(password)
-        special_char_status = True
+        special_char_status = False
 
-        if basic_status is False:
-            return False
+        #if basic_status is False:
+            #return False
 
-        # Phase 4 addition
         special_chars = [c for c in password if c in self.special_chars]
 
-        if len(special_chars) < 3:    
+        if len(special_chars) > 2:    
             print('Password should have at least three special characters.')
             print("Refer to this list: '!', '@', '#', '$', '%', '^', '&' '*'")
-            special_char_status = False
+            special_char_status = True
 
         if special_char_status is False or basic_status is False:
             return False
