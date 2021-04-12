@@ -1,5 +1,4 @@
 # author: Denem Orhun
-# ITERATION 4 updating tests
 
 import pytest
 import passwordStrengthVerifier
@@ -8,49 +7,42 @@ import passwordStrengthVerifier
 def supply_user():
 	user1 = passwordStrengthVerifier.User()
 
-# Test password meets length and alphanum requirements
-def test1_verify_length_alphanum_invalid():
+def test1_user_verify_invalid_length():
 	user1 = passwordStrengthVerifier.User()
 	assert user1._verify_password('abcd1234') is False
 
-# Test password meets length and alphanum requirements
-def test2_verify_length_alphanum_valid():
+def test2_user_verify_valid_length_alphanum():
 	user1 = passwordStrengthVerifier.User()
 	assert user1._verify_password('abcde12345')
 
-# Test password < 8 is False -> negative test case
-def test3_admin_does_not_meet_length():
-	admin1 = passwordStrengthVerifier.Admin()
-	assert admin1._verify_admin_password('abcd123') is False
-
-def test3_does_not_meet_alpha():
+def test3_user_verify_invalid_alpha_missing():
 	user1 = passwordStrengthVerifier.User()
 	assert user1._verify_password('1111111111111111') is False
 
-def test4_does_not_meet_numeric():
+def test5_user_verify_invalid_numeric_missing():
 	user1 = passwordStrengthVerifier.User()
 	assert user1._verify_password('aaaaaaaaaaaaaaaa') is False
 
-def test5_verify_uppercase_is_valid():
+def test6_user_verify_uppercase_is_valid():
 	user1 = passwordStrengthVerifier.User()
 	assert user1._verify_password('ABCD123aeaereareraa')
 
-def test6_verify_special_characters_are_valid():
+def test7_user_verify_special_characters_are_valid():
 	user1 = passwordStrengthVerifier.User()
 	assert user1._verify_password('$$AA11versererss')
 
-def test7_verify_admin_no_special_chars_is_false():
+def test8_admin_verify_no_special_chars_invalid():
 	admin1 = passwordStrengthVerifier.Admin()
 	assert admin1._verify_admin_password('ABDC23423443dadafdad') is False
 
-def test8_admin_does_not_meet_length():
+def test9_admin_verify_invalid_length():
 	admin1 = passwordStrengthVerifier.Admin()
 	assert admin1._verify_admin_password('abcd1$23') is False
 
-def test9_verify_admin_valid_password():
+def test10_admin_verify_admin_valid():
 	admin1 = passwordStrengthVerifier.Admin()
 	assert admin1._verify_admin_password('ABDC@!$23423%4')
 
-def test_verify_blank():
+def test11_verify_blank():
 		admin1 = passwordStrengthVerifier.Admin()
 		assert admin1._verify_admin_password('               ') is False

@@ -1,0 +1,24 @@
+====================================== test session starts =======================================
+platform darwin -- Python 3.9.0, pytest-6.2.3, py-1.10.0, pluggy-0.13.1 -- /Users/dorhun/Documents/GitHub/PasswordStrengthVerification/env/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/dorhun/Documents/GitHub/PasswordStrengthVerification/src
+collected 11 items                                                                                
+
+test_src.py::test1_verify_length_alphanum_invalid Password is less than 10 characters
+PASSED
+test_src.py::test2_verify_length_alphanum_valid PASSED
+test_src.py::test3_admin_does_not_meet_length Password is less than 13 characters
+PASSED
+test_src.py::test3_does_not_meet_alpha Password should have at least one character
+PASSED
+test_src.py::test4_does_not_meet_numeric Password should have at least one numeral
+PASSED
+test_src.py::test5_verify_uppercase_is_valid PASSED
+test_src.py::test6_verify_special_characters_are_valid PASSED
+test_src.py::test7_verify_admin_no_special_chars_is_false Password should have at least three special characters.
+Refer to this list: '!', '@', '#', '$', '%', '^', '&' '*'
+PASSED
+test_src.py::test8_admin_does_not_meet_length Password is less than 13 characters
+PASSED
+test_src.py::test9_verify_admin_valid_password PASSED
+test_src.py::test_verify_blank Password should have at least one numeral
